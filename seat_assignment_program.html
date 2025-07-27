@@ -1,9 +1,11 @@
+<!-- 부산대학교 의과대학 21학번 고윤성 제작 -->
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>부산대학교 의과대학 자리배치 프로그램</title>
+    <title>🩺 부산대학교 의과대학 자리배치 프로그램</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         * {
@@ -23,69 +25,45 @@
             max-width: 1200px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
 
         .header {
             background: linear-gradient(45deg, #4facfe, #00f2fe);
             color: white;
-            padding: 30px;
+            padding: 20px;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 2em;
         }
 
         .content {
-            padding: 30px;
+            padding: 20px;
         }
 
         .section {
-            margin-bottom: 30px;
-            padding: 25px;
+            margin-bottom: 20px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
-            border: 2px solid rgba(116, 75, 162, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(116, 75, 162, 0.2);
         }
 
         .section h2 {
             color: #764ba2;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .icon {
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(45deg, #4facfe, #00f2fe);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.3em;
         }
 
         .file-upload {
             position: relative;
             display: inline-block;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .file-input {
@@ -94,72 +72,48 @@
 
         .file-label {
             display: block;
-            padding: 15px 30px;
+            padding: 12px 20px;
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
             text-align: center;
             transition: all 0.3s ease;
-            font-weight: 500;
         }
 
         .file-label:hover {
-            transform: translateY(-2px);
+            transform: translateY(-1px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .input-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 600;
             color: #333;
         }
 
         .input-group input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 10px;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            border-radius: 6px;
             font-size: 16px;
-            transition: border-color 0.3s ease;
         }
 
         .input-group input:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .priority-list {
-            background: #f8f9ff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .priority-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            align-items: center;
-        }
-
-        .priority-item input {
-            flex: 1;
-            padding: 10px 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
         }
 
         .btn {
-            padding: 12px 25px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -172,8 +126,7 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
@@ -181,33 +134,27 @@
             color: white;
         }
 
-        .btn-add {
+        .btn-success {
             background: #28a745;
             color: white;
         }
 
-        .btn-remove {
-            background: #dc3545;
-            color: white;
-            padding: 8px 12px;
-        }
-
         .seat-layout {
             background: #f8f9ff;
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
         }
 
         .row {
             display: flex;
             justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             align-items: center;
         }
 
         .row-label {
-            width: 50px;
+            width: 40px;
             text-align: center;
             font-weight: bold;
             color: #764ba2;
@@ -215,27 +162,25 @@
 
         .seats {
             display: flex;
-            gap: 8px;
-            flex-wrap: nowrap;
-            justify-content: flex-start;  /* 왼쪽 정렬로 시작 */
-            overflow-x: auto;
-            white-space: nowrap;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
         }
 
         .seat {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border: 2px solid #ddd;
-            border-radius: 8px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 500;
             text-align: center;
             background: white;
             transition: all 0.3s ease;
-            position: relative;
+            cursor: pointer;
             overflow: hidden;
         }
 
@@ -245,38 +190,61 @@
             border-color: #4a00e0;
         }
 
-
-
-        .seat.priority {
+        .seat.selected {
             background: linear-gradient(45deg, #ff6b6b, #ee5a24);
             color: white;
             border-color: #c0392b;
+            transform: scale(1.1);
+        }
+
+        .seat.priority {
+            background: linear-gradient(45deg, #ff9500, #ff6b35);
+            color: white;
+            border-color: #e55d00;
+        }
+
+        .seat:hover {
+            transform: scale(1.05);
+        }
+
+        .swap-mode {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .swap-mode.active {
+            background: #d1ecf1;
+            border-color: #bee5eb;
         }
 
         .results {
             background: #f8f9ff;
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
         }
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
         .stat-card {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 15px;
+            border-radius: 8px;
             text-align: center;
-            border: 2px solid rgba(116, 75, 162, 0.1);
+            border: 1px solid rgba(116, 75, 162, 0.1);
         }
 
         .stat-number {
-            font-size: 2em;
+            font-size: 1.5em;
             font-weight: bold;
             color: #764ba2;
         }
@@ -284,49 +252,21 @@
         .stat-label {
             color: #666;
             margin-top: 5px;
+            font-size: 12px;
         }
 
         .export-section {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             justify-content: center;
-            margin-top: 25px;
-        }
-
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 30px;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .file-info {
-            background: #e8f5e8;
-            border: 1px solid #c3e6c3;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
-            display: none;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .alert {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
         }
 
         .alert-success {
@@ -344,22 +284,16 @@
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
-                border-radius: 15px;
             }
             
             .content {
-                padding: 20px;
+                padding: 15px;
             }
             
             .seat {
-                width: 40px;
-                height: 40px;
+                width: 35px;
+                height: 35px;
                 font-size: 9px;
-            }
-            
-            .priority-item {
-                flex-direction: column;
-                gap: 10px;
             }
             
             .export-section {
@@ -372,88 +306,65 @@
     <div class="container">
         <div class="header">
             <h1>🩺 부산대학교 의과대학 자리배치 프로그램</h1>
-            <p>21학번 고윤성 제작</p>
         </div>
 
         <div class="content">
-            <!-- 1. 파일 업로드 섹션 -->
+            <!-- 파일 업로드 -->
             <div class="section">
-                <h2><span class="icon">1</span>참가자 명단 업로드</h2>
+                <h2>1. 참가자 명단 업로드</h2>
                 <div class="file-upload">
                     <input type="file" id="fileInput" class="file-input" accept=".xlsx,.xls,.csv">
-                    <label for="fileInput" class="file-label">
-                        📁 엑셀 파일 선택하기 (.xlsx, .xls, .csv)
-                    </label>
+                    <label for="fileInput" class="file-label">📁 엑셀 파일 선택</label>
                 </div>
-                <div id="fileInfo" class="file-info"></div>
-                <p style="color: #666; font-size: 14px; margin-top: 10px;">
-                    💡 엑셀 파일의 첫 번째 열에 이름이 있어야 합니다. (첫 번째 행은 제목으로 무시됩니다)
-                </p>
+                <p style="color: #666; font-size: 13px;">첫 번째 열에 이름이 있어야 합니다.</p>
             </div>
 
-            <!-- 2. 좌석 설정 섹션 -->
+            <!-- 좌석 설정 -->
             <div class="section">
-                <h2><span class="icon">2</span>좌석 구성 설정</h2>
+                <h2>2. 좌석 구성 설정</h2>
                 <div class="input-group">
                     <label for="seatConfig">각 열별 좌석 수 (쉼표로 구분)</label>
-                    <input type="text" id="seatConfig" placeholder="예: 12,14,16,18,20,20,20,10" value="12,14,16,18,20,20,20,10">
+                    <input type="text" id="seatConfig" placeholder="예: 12,14,16,18" value="12,14,16,18">
                 </div>
-                <p style="color: #666; font-size: 14px;">
-                    💡 앞열부터 순서대로 입력하세요. 위 예시는 총 130석입니다.
-                </p>
             </div>
 
-            <!-- 3. 우선 배정 섹션 -->
+            <!-- 우선 배정 -->
             <div class="section">
-                <h2><span class="icon">3</span>우선 배정 (선택사항)</h2>
-                <p style="color: #666; margin-bottom: 20px;">특정 인원을 지정된 자리에 우선 배치할 수 있습니다.</p>
-                <div class="priority-list" id="priorityList">
-                    <div class="priority-item">
-                        <input type="text" placeholder="이름" class="priority-name">
-                        <input type="number" placeholder="열" class="priority-row" min="1">
-                        <input type="number" placeholder="번호" class="priority-seat" min="1">
-                        <button type="button" class="btn btn-remove" onclick="removePriorityItem(this)">삭제</button>
+                <h2>3. 우선 배정 (선택사항)</h2>
+                <p style="color: #666; margin-bottom: 15px; font-size: 13px;">특정 인원을 지정된 자리에 우선 배치할 수 있습니다.</p>
+                <div id="priorityList">
+                    <div class="priority-item" style="display: flex; gap: 10px; margin-bottom: 10px; align-items: center;">
+                        <input type="text" placeholder="이름" class="priority-name" style="flex: 2; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                        <input type="number" placeholder="열" class="priority-row" min="1" style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                        <input type="number" placeholder="번호" class="priority-seat" min="1" style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                        <button type="button" class="btn btn-secondary" onclick="removePriorityItem(this)" style="padding: 8px 12px; font-size: 12px;">삭제</button>
                     </div>
                 </div>
-                <button type="button" class="btn btn-add" onclick="addPriorityItem()">+ 우선 배정 추가</button>
+                <button type="button" class="btn btn-success" onclick="addPriorityItem()" style="font-size: 14px;">+ 우선 배정 추가</button>
             </div>
 
-            <!-- 4. 실행 버튼 -->
+            <!-- 실행 버튼 -->
             <div class="section" style="text-align: center;">
-                <button type="button" class="btn btn-primary" onclick="generateSeating()" style="font-size: 18px; padding: 15px 40px;">
-                    🎯 자리 배치 시작하기
-                </button>
-                <button type="button" class="btn btn-secondary" onclick="resetAll()" style="font-size: 16px; padding: 12px 30px; margin-left: 15px;">
-                    🔄 전체 초기화
-                </button>
-            </div>
-
-            <!-- 로딩 -->
-            <div id="loading" class="loading">
-                <div class="spinner"></div>
-                <p>자리를 배치하고 있습니다...</p>
+                <button type="button" class="btn btn-primary" onclick="generateSeating()">🎯 자리 배치 시작</button>
+                <button type="button" class="btn btn-secondary" onclick="resetAll()">🔄 초기화</button>
             </div>
 
             <!-- 결과 표시 -->
             <div id="results" class="results" style="display: none;">
-                <h2 style="text-align: center; margin-bottom: 30px; color: #764ba2;">
-                    🎉 자리 배치 완료!
-                </h2>
+                <h2 style="text-align: center; margin-bottom: 20px; color: #764ba2;">✅ 자리 배치 완료!</h2>
+                
+                <!-- 자리 변경 모드 -->
+                <div id="swapMode" class="swap-mode">
+                    <button type="button" class="btn btn-success" onclick="toggleSwapMode()">🔄 자리 변경 모드</button>
+                    <p style="margin-top: 10px; font-size: 14px;">자리 변경 모드에서 두 자리를 클릭하여 위치를 바꿀 수 있습니다.</p>
+                </div>
                 
                 <div class="stats" id="stats"></div>
-                
                 <div class="seat-layout" id="seatLayout"></div>
                 
                 <div class="export-section">
-                    <button type="button" class="btn btn-primary" onclick="exportToExcel()">
-                        📊 엑셀로 내보내기
-                    </button>
-                    <button type="button" class="btn btn-secondary" onclick="exportToCSV()">
-                        📄 CSV로 내보내기
-                    </button>
-                    <button type="button" class="btn btn-add" onclick="generateSeating()">
-                        🔄 다시 배치하기
-                    </button>
+                    <button type="button" class="btn btn-primary" onclick="exportToExcel()">📊 엑셀 내보내기</button>
+                    <button type="button" class="btn btn-success" onclick="generateSeating()">🔄 재배치</button>
                 </div>
             </div>
         </div>
@@ -463,19 +374,13 @@
         let participantData = [];
         let seatAssignments = [];
         let seatConfiguration = [];
+        let swapModeActive = false;
+        let selectedSeat = null;
 
         // 파일 업로드 처리
         document.getElementById('fileInput').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
-
-            const fileInfo = document.getElementById('fileInfo');
-            fileInfo.innerHTML = `
-                <strong>선택된 파일:</strong> ${file.name}<br>
-                <strong>크기:</strong> ${(file.size / 1024).toFixed(2)} KB<br>
-                <strong>타입:</strong> ${file.type}
-            `;
-            fileInfo.style.display = 'block';
 
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -486,14 +391,13 @@
                     const worksheet = workbook.Sheets[sheetName];
                     const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
                     
-                    // 첫 번째 행은 헤더로 무시, 첫 번째 열의 이름만 추출
                     participantData = jsonData.slice(1)
                         .map(row => row[0])
                         .filter(name => name && name.toString().trim() !== '');
                     
-                    showAlert(`성공적으로 ${participantData.length}명의 참가자를 불러왔습니다!`, 'success');
+                    showAlert(`${participantData.length}명의 참가자를 불러왔습니다!`, 'success');
                 } catch (error) {
-                    showAlert('파일을 읽는 중 오류가 발생했습니다. 올바른 엑셀 파일인지 확인해주세요.', 'error');
+                    showAlert('파일 읽기 오류가 발생했습니다.', 'error');
                 }
             };
             reader.readAsArrayBuffer(file);
@@ -504,11 +408,12 @@
             const priorityList = document.getElementById('priorityList');
             const newItem = document.createElement('div');
             newItem.className = 'priority-item';
+            newItem.style.cssText = 'display: flex; gap: 10px; margin-bottom: 10px; align-items: center;';
             newItem.innerHTML = `
-                <input type="text" placeholder="이름" class="priority-name">
-                <input type="number" placeholder="열" class="priority-row" min="1">
-                <input type="number" placeholder="번호" class="priority-seat" min="1">
-                <button type="button" class="btn btn-remove" onclick="removePriorityItem(this)">삭제</button>
+                <input type="text" placeholder="이름" class="priority-name" style="flex: 2; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                <input type="number" placeholder="열" class="priority-row" min="1" style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                <input type="number" placeholder="번호" class="priority-seat" min="1" style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                <button type="button" class="btn btn-secondary" onclick="removePriorityItem(this)" style="padding: 8px 12px; font-size: 12px;">삭제</button>
             `;
             priorityList.appendChild(newItem);
         }
@@ -517,13 +422,9 @@
         function removePriorityItem(button) {
             button.parentElement.remove();
         }
-
-        // 알림 표시
         function showAlert(message, type) {
             const existingAlert = document.querySelector('.alert');
-            if (existingAlert) {
-                existingAlert.remove();
-            }
+            if (existingAlert) existingAlert.remove();
 
             const alert = document.createElement('div');
             alert.className = `alert alert-${type}`;
@@ -532,19 +433,16 @@
             const firstSection = document.querySelector('.section');
             firstSection.parentNode.insertBefore(alert, firstSection);
             
-            setTimeout(() => {
-                alert.remove();
-            }, 5000);
+            setTimeout(() => alert.remove(), 3000);
         }
 
         // 자리 배치 실행
         function generateSeating() {
             if (participantData.length === 0) {
-                showAlert('먼저 참가자 명단 파일을 업로드해주세요.', 'error');
+                showAlert('먼저 참가자 명단을 업로드해주세요.', 'error');
                 return;
             }
 
-            // 좌석 구성 파싱
             const seatConfigInput = document.getElementById('seatConfig').value;
             seatConfiguration = seatConfigInput.split(',').map(num => parseInt(num.trim())).filter(num => !isNaN(num));
             
@@ -555,27 +453,19 @@
 
             const totalSeats = seatConfiguration.reduce((sum, seats) => sum + seats, 0);
             if (participantData.length > totalSeats) {
-                showAlert(`참가자 수(${participantData.length}명)가 총 좌석 수(${totalSeats}석)보다 많습니다.`, 'error');
+                showAlert(`참가자 수가 좌석 수보다 많습니다.`, 'error');
                 return;
             }
 
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('results').style.display = 'none';
-
-            setTimeout(() => {
-                try {
-                    assignSeats();
-                    displayResults();
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('results').style.display = 'block';
-                } catch (error) {
-                    document.getElementById('loading').style.display = 'none';
-                    showAlert('자리 배치 중 오류가 발생했습니다.', 'error');
-                }
-            }, 1000);
+            assignSeats();
+            displayResults();
+            document.getElementById('results').style.display = 'block';
+            swapModeActive = false;
+            selectedSeat = null;
+            updateSwapModeUI();
         }
 
-        // 실제 자리 배치 로직
+        // 자리 배치 로직
         function assignSeats() {
             seatAssignments = [];
             const occupiedSeats = new Set();
@@ -592,7 +482,7 @@
                 if (name && row && seat) {
                     if (row <= seatConfiguration.length && seat <= seatConfiguration[row - 1]) {
                         const seatId = `${row}-${seat}`;
-                        if (!occupiedSeats.has(seatId)) {
+                        if (!occupiedSeats.has(seatId) && participantData.includes(name)) {
                             seatAssignments.push({
                                 name: name,
                                 row: row,
@@ -610,15 +500,14 @@
             // 우선 배정된 사람들을 일반 참가자 목록에서 제외
             const priorityNames = seatAssignments.map(assignment => assignment.name);
             const remainingParticipants = participantData.filter(name => !priorityNames.includes(name));
-
-            // 남은 참가자들을 무작위로 섞기
+            
+            // 무작위 섞기
             const shuffledParticipants = [...remainingParticipants];
             for (let i = shuffledParticipants.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [shuffledParticipants[i], shuffledParticipants[j]] = [shuffledParticipants[j], shuffledParticipants[i]];
             }
 
-            // 앞열부터 차례대로 배치
             let participantIndex = 0;
             for (let rowIndex = 0; rowIndex < seatConfiguration.length; rowIndex++) {
                 const rowNumber = rowIndex + 1;
@@ -640,7 +529,6 @@
                 }
             }
 
-            // 배치 순서대로 정렬
             seatAssignments.sort((a, b) => {
                 if (a.row !== b.row) return a.row - b.row;
                 return a.seat - b.seat;
@@ -649,7 +537,6 @@
 
         // 결과 표시
         function displayResults() {
-            // 통계 정보
             const totalSeats = seatConfiguration.reduce((sum, seats) => sum + seats, 0);
             const assignedSeats = seatAssignments.length;
             const prioritySeats = seatAssignments.filter(assignment => assignment.isPriority).length;
@@ -662,7 +549,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">${assignedSeats}</div>
-                    <div class="stat-label">배정된 좌석</div>
+                    <div class="stat-label">배정 좌석</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">${prioritySeats}</div>
@@ -674,8 +561,7 @@
                 </div>
             `;
 
-            // 좌석 레이아웃 표시
-            let layoutHTML = '<h3 style="text-align: center; margin-bottom: 20px;">좌석 배치도</h3>';
+            let layoutHTML = '<h3 style="text-align: center; margin-bottom: 15px;">좌석 배치도</h3>';
             
             for (let rowIndex = 0; rowIndex < seatConfiguration.length; rowIndex++) {
                 const rowNumber = rowIndex + 1;
@@ -694,20 +580,92 @@
                     
                     if (assignment) {
                         seatClass += assignment.isPriority ? ' priority' : ' occupied';
-                        seatContent = assignment.name.length > 6 ? 
-                            assignment.name.substring(0, 5) + '...' : assignment.name;
+                        seatContent = assignment.name.length > 5 ? 
+                            assignment.name.substring(0, 4) + '...' : assignment.name;
                     }
                     
-                    layoutHTML += `<div class="${seatClass}" title="${assignment ? assignment.name : '빈 자리'}">${seatContent}</div>`;
+                    layoutHTML += `<div class="${seatClass}" 
+                        data-row="${rowNumber}" 
+                        data-seat="${seatNumber}" 
+                        onclick="handleSeatClick(${rowNumber}, ${seatNumber})"
+                        title="${assignment ? assignment.name + (assignment.isPriority ? ' (우선배정)' : '') : '빈 자리'}">${seatContent}</div>`;
                 }
                 
-                layoutHTML += `
-                        </div>
-                    </div>
-                `;
+                layoutHTML += `</div></div>`;
             }
             
             document.getElementById('seatLayout').innerHTML = layoutHTML;
+        }
+
+        // 자리 변경 모드 토글
+        function toggleSwapMode() {
+            swapModeActive = !swapModeActive;
+            selectedSeat = null;
+            updateSwapModeUI();
+        }
+
+        // 자리 변경 모드 UI 업데이트
+        function updateSwapModeUI() {
+            const swapModeDiv = document.getElementById('swapMode');
+            const button = swapModeDiv.querySelector('button');
+            
+            if (swapModeActive) {
+                swapModeDiv.classList.add('active');
+                button.textContent = '❌ 자리 변경 모드 종료';
+                button.className = 'btn btn-secondary';
+            } else {
+                swapModeDiv.classList.remove('active');
+                button.textContent = '🔄 자리 변경 모드';
+                button.className = 'btn btn-success';
+            }
+            
+            // 모든 좌석의 선택 상태 해제
+            document.querySelectorAll('.seat').forEach(seat => {
+                seat.classList.remove('selected');
+            });
+        }
+
+        // 좌석 클릭 처리
+        function handleSeatClick(row, seat) {
+            if (!swapModeActive) return;
+
+            const seatElement = document.querySelector(`[data-row="${row}"][data-seat="${seat}"]`);
+            const assignment = seatAssignments.find(a => a.row === row && a.seat === seat);
+            
+            if (!assignment) return; // 빈 자리는 선택 불가
+
+            if (!selectedSeat) {
+                // 첫 번째 좌석 선택
+                selectedSeat = { row, seat, assignment };
+                seatElement.classList.add('selected');
+                showAlert(`${assignment.name}님의 자리를 선택했습니다. 바꿀 자리를 선택해주세요.`, 'success');
+            } else if (selectedSeat.row === row && selectedSeat.seat === seat) {
+                // 같은 좌석 클릭 - 선택 해제
+                selectedSeat = null;
+                seatElement.classList.remove('selected');
+                showAlert('선택을 취소했습니다.', 'success');
+            } else {
+                // 두 번째 좌석 선택 - 자리 바꾸기
+                swapSeats(selectedSeat, { row, seat, assignment });
+                selectedSeat = null;
+                document.querySelectorAll('.seat').forEach(s => s.classList.remove('selected'));
+            }
+        }
+
+        // 자리 바꾸기
+        function swapSeats(seat1, seat2) {
+            const assignment1 = seatAssignments.find(a => a.row === seat1.row && a.seat === seat1.seat);
+            const assignment2 = seatAssignments.find(a => a.row === seat2.row && a.seat === seat2.seat);
+            
+            if (assignment1 && assignment2) {
+                // 이름만 교환
+                const tempName = assignment1.name;
+                assignment1.name = assignment2.name;
+                assignment2.name = tempName;
+                
+                displayResults();
+                showAlert(`${assignment2.name}님과 ${assignment1.name}님의 자리를 바꿨습니다.`, 'success');
+            }
         }
 
         // 엑셀 내보내기
@@ -731,21 +689,19 @@
             XLSX.writeFile(wb, `자리배치결과_${today}.xlsx`);
         }
 
-        // CSV 내보내기
-        function exportToCSV() {
-            let csvContent = '열,좌석번호,이름,구분\n';
+        // 전체 초기화
+        function resetAll() {
+            participantData = [];
+            seatAssignments = [];
+            seatConfiguration = [];
+            swapModeActive = false;
+            selectedSeat = null;
             
-            seatAssignments.forEach(assignment => {
-                csvContent += `${assignment.row}열,${assignment.seat}번,${assignment.name},${assignment.isPriority ? '우선배정' : '일반배정'}\n`;
-            });
-
-            const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('fileInput').value = '';
+            document.getElementById('seatConfig').value = '12,14,16,18';
+            document.getElementById('results').style.display = 'none';
             
-            link.href = URL.createObjectURL(blob);
-            link.download = `자리배치결과_${today}.csv`;
-            link.click();
+            showAlert('전체 데이터가 초기화되었습니다.', 'success');
         }
     </script>
 </body>
